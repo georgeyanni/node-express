@@ -45,6 +45,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/api/welcome", (req, res, next) => {
+  res.status(200).json({ message: "welcome" });
+});
 app.use("/api/feed", feedRoutes);
 app.use("/api/auth", authRoutes);
 
