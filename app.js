@@ -8,7 +8,8 @@ const { v4: uuidv4 } = require("uuid");
 const feedRoutes = require("./routes/feed");
 const authRoutes = require("./routes/auth");
 const app = express();
-
+require("dotenv").config();
+const port = process.env.PORT || 5000;
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
@@ -55,11 +56,9 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data });
 });
 mongoose
-  .connect(
-    "mongodb+srv://gorgino2020:WvjWHcGp6M5CVMdx@cluster0.v8cx4.mongodb.net/messages?retryWrites=true"
-  )
+  .connect(process.env.MONGO_URI)
   .then((result) => {
-    const server = app.listen(8080);
+    const server = app.listen(port);
     const io = require("socket.io")(server);
     io.on("connection", (socket) => {
       console.log("client connected");
