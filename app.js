@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/welcome", (req, res, next) => {
-  res.status(200).json({ message: "welcome to our api !!!!" });
+  res.status(200).json({ message: "welcome to our api from george!!!!" });
 });
 app.use("/api/feed", feedRoutes);
 app.use("/api/auth", authRoutes);
